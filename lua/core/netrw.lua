@@ -69,7 +69,12 @@ autocmd('FileType', {
 })
 
 autocmd('VimEnter', {
-    callback = NetrwOpen,
+    callback = function()
+        if next(vim.fn.argv()) == nil then
+            -- neovim was opened with no args
+            NetrwOpen()
+        end
+    end,
     desc = 'Opens tree on neovim start.',
     group = augroup('OpenExplorerOnEnter', { clear = true }),
     pattern = '*',
