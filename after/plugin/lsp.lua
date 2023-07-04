@@ -78,8 +78,8 @@ require('luasnip.loaders.from_vscode').lazy_load()
 
 cmp.setup({
     mapping = {
-        -- `Enter` key to confirm completion
-        --['<CR>'] = cmp.mapping.confirm({select = false}),
+        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-d>'] = cmp.mapping.scroll_docs(4),
 
         -- Ctrl+Space to trigger completion menu
         ['<C-Space>'] = cmp.mapping.complete(),
@@ -89,10 +89,18 @@ cmp.setup({
         ['<C-b>'] = cmp_action.luasnip_jump_backward(),
     },
 
+    snippet = {
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        end,
+    },
+
     sources = {
-        { name = 'path' },                         -- file paths
-        { name = 'nvim_lsp', keyword_length = 3 }, -- from language server
-        { name = 'nvim_lua', keyword_length = 2 }, -- complete neovim's Lua runtime API such vim.lsp.*
-        { name = 'buffer',   keyword_length = 2 }, -- source current buffer
+        { name = 'path' },                                       -- file paths
+        { name = 'luasnip' },                                    -- luasnip source
+        { name = 'nvim_lsp',               keyword_length = 3 }, -- from language server
+        { name = 'nvim_lsp_signature_help' },                    -- func signature
+        { name = 'nvim_lua',               keyword_length = 2 }, -- complete neovim's Lua runtime API such vim.lsp.*
+        { name = 'buffer',                 keyword_length = 4 }, -- source current buffer
     },
 })
