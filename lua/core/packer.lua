@@ -21,7 +21,6 @@ return require('packer').startup(function(use)
     -- icons for telescope
     use('nvim-tree/nvim-web-devicons')
 
-    use('folke/zen-mode.nvim')  -- enable zenmode
     use('folke/trouble.nvim')   -- list for showing diagnostics, references, telescope results, quickfix and location lists
     use {
         'folke/which-key.nvim', -- keymaps suggestions
