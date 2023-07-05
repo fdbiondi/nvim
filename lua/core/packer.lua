@@ -78,13 +78,6 @@ return require('packer').startup(function(use)
         requires = { 'nvim-tree/nvim-web-devicons', opt = true }
     }
 
-    -- file explorer
-    use('lambdalisue/fern.vim')
-    use('lambdalisue/fern-renderer-nerdfont.vim')
-    use('lambdalisue/nerdfont.vim')
-    use('lambdalisue/glyph-palette.vim')
-    use('yuki-yano/fern-preview.vim')
-
     -- colorschemes
     use { 'rose-pine/neovim', as = 'rose-pine' }
     use { 'briones-gabriel/darcula-solid.nvim', as = 'darcula', requires = 'rktjmp/lush.nvim' }
