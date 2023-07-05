@@ -33,6 +33,12 @@ require 'nvim-web-devicons'.setup {
     -- same as `override` but specifically for overrides by extension
     -- takes effect when `strict` is true
     override_by_extension = {
+        ["astro"] = {
+            icon = "",
+            color = "#ff6d01",
+            name = "Astro"
+        },
+
         ["log"] = {
             icon = "",
             color = "#81e043",
