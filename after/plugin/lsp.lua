@@ -51,6 +51,8 @@ lsp.ensure_installed({
     'tailwindcss',
     'tsserver',
     'volar',
+    'omnisharp',
+    'omnisharp-mono',
 })
 
 local lspconfig = require('lspconfig')
@@ -63,6 +65,17 @@ lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
 lspconfig.clangd.setup {
     capabilities = capabilities,
 }
+
+-- Configure c# lsp
+local omnisharp_bin = "/home/fdbiondi/.local/share/nvim/mason/packages/omnisharp-mono/omnisharp-mono"
+local pid = vim.fn.getpid()
+
+lspconfig.omnisharp.setup({
+    -- https://github.com/williamboman/nvim-lsp-installer/issues/479#issuecomment-1128840405
+    use_mono = true,
+
+    cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid) },
+})
 
 -- Configure volar language server
 lspconfig.volar.setup {
