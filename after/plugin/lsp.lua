@@ -52,7 +52,6 @@ lsp.ensure_installed({
     'tsserver',
     'volar',
     'omnisharp',
-    'omnisharp-mono',
 })
 
 local lspconfig = require('lspconfig')
