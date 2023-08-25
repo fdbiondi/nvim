@@ -110,9 +110,9 @@ cmp.setup({
     sources = {
         { name = 'path' },                                       -- file paths
         { name = 'luasnip' },                                    -- luasnip source
-        { name = 'nvim_lsp',               keyword_length = 3 }, -- from language server
+        { name = 'nvim_lsp',               keyword_length = 1 }, -- from language server
         { name = 'nvim_lsp_signature_help' },                    -- func signature
-        { name = 'nvim_lua',               keyword_length = 2 }, -- complete neovim's Lua runtime API such vim.lsp.*
-        { name = 'buffer',                 keyword_length = 4 }, -- source current buffer
+        { name = 'nvim_lua',               keyword_length = 1 }, -- complete neovim's Lua runtime API such vim.lsp.*
+        { name = 'buffer',                 keyword_length = 3 }, -- source current buffer
     },
 })

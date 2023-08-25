@@ -18,6 +18,7 @@ return require('packer').startup(function(use)
         'nvim-telescope/telescope-file-browser.nvim',
         requires = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim' }
     }
+
     -- icons for telescope
     use('nvim-tree/nvim-web-devicons')
 
@@ -90,11 +91,20 @@ return require('packer').startup(function(use)
     use('lewis6991/gitsigns.nvim')
 
     -- useful tools
-    use('theprimeagen/harpoon')                -- file navigation tool
-    use('theprimeagen/refactoring.nvim')       -- refactoring tool
     use('sbdchd/neoformat')                    -- format document
     use('mbbill/undotree')                     -- navigation through undo history tree
     use('laytan/cloak.nvim')                   -- password hidding
     use('lukas-reineke/indent-blankline.nvim') -- lines indentation guidelines
     use('numToStr/Comment.nvim')               -- comment visual regions/lines
+    use('theprimeagen/harpoon')                -- file navigation tool
+    use {                                      -- refactoring tool
+        'theprimeagen/refactoring.nvim',
+        requires = {
+            { 'nvim-lua/plenary.nvim' },
+            { 'nvim-treesitter/nvim-treesitter' }
+        }
+    }
+
+    -- some practice plugin
+    use('theprimeagen/vim-be-good')
 end)
