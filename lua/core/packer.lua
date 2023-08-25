@@ -90,6 +90,14 @@ return require('packer').startup(function(use)
     use('tpope/vim-fugitive')
     use('lewis6991/gitsigns.nvim')
 
+    -- debugging
+    use('nvim-lua/plenary.nvim')
+    use('mfussenegger/nvim-dap')
+
+    -- rust tools
+    -- use('simrat39/rust-tools.nvim')
+    use { 'simrat39/rust-tools.nvim', requires = { 'neovim/nvim-lspconfig', opt = true } }
+
     -- useful tools
     use('sbdchd/neoformat')                    -- format document
     use('mbbill/undotree')                     -- navigation through undo history tree

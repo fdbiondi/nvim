@@ -57,11 +57,37 @@ lsp.ensure_installed({
 local lspconfig = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+-- Configure rust language server
+local util = require('lspconfig/util')
+
+lspconfig.rust_analyzer.setup({
+    capabilities,
+    filetypes = {'rust'},
+    root_dir = util.root_pattern('Cargo.toml'),
+    settings = {
+        ['rust-analyzer'] = {
+            cargo = {
+                allFeatures = true,
+            },
+        },
+    },
+})
+
+-- local rt = require('rust-tools')
+--
+-- rt.setup({
+--   server = {
+--     on_attach = lsp.on_attach,
+--     capabilities = capabilities,
+--   },
+-- })
+
 -- Configure lua language server
 lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
 
 -- Configure c++, c language server
 lspconfig.clangd.setup {
+    on_attach = lsp.on_attach,
     capabilities = capabilities,
 }
 
@@ -78,6 +104,7 @@ lspconfig.omnisharp.setup({
 
 -- Configure volar language server
 lspconfig.volar.setup {
+    on_attach = lsp.on_attach,
     capabilities = capabilities,
 }
 
