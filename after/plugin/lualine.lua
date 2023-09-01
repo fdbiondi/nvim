@@ -1,12 +1,12 @@
-require('lualine').setup {
+require("lualine").setup {
     sections = {
         lualine_c = {
             {
-                'filename',
+                "filename",
                 path = 1,
             }
         },
 
-        lualine_x = { 'encoding', 'filetype' },
+        lualine_x = { "encoding", "filetype" },
     },
 }
