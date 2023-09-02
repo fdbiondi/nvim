@@ -18,8 +18,6 @@ rt.setup({
         on_attach = function(_, bufnr)
             -- Hover actions
             vim.keymap.set("n", "<leader>k", rt.hover_actions.hover_actions, { buffer = bufnr })
-            -- Code action groups
-            vim.keymap.set("n", "<leader>A", rt.code_action_group.code_action_group, { buffer = bufnr })
         end,
         capabilities = require("cmp_nvim_lsp").default_capabilities()
     },
@@ -35,27 +33,3 @@ rt.setup({
         }
     }
 })
-
--- require("dap").adapters.codelldb = {
---     type = "server",
---     host = "127.0.0.1",
---     port = "${port}",
---     executable = {
---         command = codelldb_path,
---         args = { "--port", "${port}" },
---     }
--- }
---
--- require("dap").configurations.rust = {
---     {
---         name = "Launch",
---         type = "lldb",
---         request = "launch",
---         program = function()
---             return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
---         end,
---         cwd = "${workspaceFolder}",
---         stopOnEntry = false,
---         args = {},
---     },
--- }
