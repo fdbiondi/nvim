@@ -79,7 +79,7 @@ lspconfig.clangd.setup {
 }
 
 -- Configure c# lsp
-local omnisharp_bin = "/home/fdbiondi/.local/share/nvim/mason/packages/omnisharp-mono/omnisharp-mono"
+local omnisharp_bin = require("mason-registry").get_package("omnisharp-mono"):get_install_path() .. "/omnisharp-mono"
 local pid = vim.fn.getpid()
 
 lspconfig.omnisharp.setup({
