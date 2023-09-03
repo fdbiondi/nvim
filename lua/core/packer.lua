@@ -93,7 +93,9 @@ return require('packer').startup(function(use)
     -- debugging
     use('nvim-lua/plenary.nvim')
     use('mfussenegger/nvim-dap')
-    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+    use('rcarriga/nvim-dap-ui')
+    use('theHamsta/nvim-dap-virtual-text')
+    -- use('leoluz/nvim-dap-go')
 
     -- rust tools
     use('simrat39/rust-tools.nvim')

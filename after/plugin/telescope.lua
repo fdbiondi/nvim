@@ -31,11 +31,10 @@ local builtin = require('telescope.builtin')
 
 vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = '[F]ind Files' })
 vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = 'Git Files' })
+vim.keymap.set('n', '<leader>fs', builtin.live_grep, { noremap = true, desc = 'Live Grep' })
 vim.keymap.set('n', '<leader>ps', function()
     builtin.grep_string({ search = vim.fn.input('Grep > ') })
 end, { desc = 'Grep [S]tring' })
-
-vim.keymap.set('n', '<leader>fs', builtin.live_grep, { noremap = true, desc = 'Live Grep' })
 
 vim.keymap.set('n', '<leader>pw', [[:lua require'telescope.builtin'.grep_string({ search = <C-r><C-w> })<CR>]],
     { desc = 'Find [W]ord' })
