@@ -67,6 +67,7 @@ lsp.ensure_installed({
     "tsserver",
     "volar",
     "omnisharp",
+    "gopls",
 })
 
 -- Configure lua language server
@@ -95,6 +96,26 @@ lspconfig.omnisharp.setup({
 lspconfig.volar.setup {
     on_attach = lsp.on_attach,
     capabilities = capabilities,
+}
+
+local util = require("lspconfig/util")
+
+lspconfig.gopls.setup {
+    on_attach = lsp.on_attach,
+    capabilities = capabilities,
+    cmd = { "gopls", "serve" },
+    filetypes = { "go", "gomod", "gowork", "gotmpl" },
+    root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+    settings = {
+        gopls = {
+            analyses = {
+                unusedparams = true,
+            },
+            completeUnimported = true,
+            staticcheck = true,
+            usePlaceholders = true,
+        },
+    },
 }
 
 lsp.setup()
