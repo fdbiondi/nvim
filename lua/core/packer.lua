@@ -100,6 +100,9 @@ return require('packer').startup(function(use)
     -- rust tools
     use('simrat39/rust-tools.nvim')
 
+    -- golang tools
+    use("ray-x/go.nvim")
+
     -- useful tools
     use('sbdchd/neoformat')                    -- format document
     use('mbbill/undotree')                     -- navigation through undo history tree

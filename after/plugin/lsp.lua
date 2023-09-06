@@ -1,15 +1,15 @@
-local lsp = require("lsp-zero").preset("recommended")
-
-lsp.nvim_workspace()
-
-lsp.set_preferences({
-    suggest_lsp_servers = false,
-    sign_icons = {
-        error = "E",
-        warn = "W",
-        hint = "H",
-        info = "I"
+local lsp = require("lsp-zero").preset({
+    name = 'recommended',
+    manage_nvim_cmp = {
+        set_extra_mappings = false,
     }
+})
+
+lsp.set_sign_icons({
+    error = "E",
+    warn = "W",
+    hint = "H",
+    info = "I"
 })
 
 lsp.on_attach(function(_, bufnr)
@@ -106,6 +106,9 @@ lspconfig.gopls.setup {
     cmd = { "gopls", "serve" },
     filetypes = { "go", "gomod", "gowork", "gotmpl" },
     root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+    fillstruct = 'gopls',
+    dap_debug = true,
+    dap_debug_gui = true,
     settings = {
         gopls = {
             analyses = {
