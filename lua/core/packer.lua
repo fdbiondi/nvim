@@ -118,6 +118,9 @@ return require('packer').startup(function(use)
         }
     }
 
+    -- IA suggestions tool
+    use('Exafunction/codeium.vim')
+
     -- some practice plugin
     use('theprimeagen/vim-be-good')
 end)
