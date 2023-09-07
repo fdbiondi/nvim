@@ -66,7 +66,6 @@ lsp.ensure_installed({
     "tailwindcss",
     "tsserver",
     "volar",
-    "omnisharp-mono",
     "gopls",
 })
 
