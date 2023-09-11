@@ -40,14 +40,6 @@ lsp.on_attach(function(_, bufnr)
     vim.keymap.set("n", "<leader>vdl", "<cmd>Telescope diagnostics<CR>",
         { buffer = bufnr, desc = "Open telescope diagnostics list" })
 
-    -- Lesser used LSP functionality
-    vim.keymap.set("n", "<leader>vwa", vim.lsp.buf.add_workspace_folder,
-        { buffer = bufnr, desc = "[W]orkspace [A]dd Folder" })
-    vim.keymap.set("n", "<leader>vwr", vim.lsp.buf.remove_workspace_folder,
-        { buffer = bufnr, desc = "[W]orkspace [R]emove Folder" })
-    vim.keymap.set("n", "<leader>vwl", function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end,
-        { buffer = bufnr, desc = "[W]orkspace [L]ist Folders" })
-
     vim.keymap.set({ "n", "x" }, "<leader>vff", function() vim.lsp.buf.format({ async = true }) end,
         { buffer = bufnr, desc = "Format File current buffer using LSP" })
 end)

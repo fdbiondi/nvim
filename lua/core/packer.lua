@@ -89,6 +89,7 @@ return require('packer').startup(function(use)
     -- git plugins
     use('tpope/vim-fugitive')
     use('lewis6991/gitsigns.nvim')
+    use('ThePrimeagen/git-worktree.nvim')
 
     -- debugging
     use('nvim-lua/plenary.nvim')

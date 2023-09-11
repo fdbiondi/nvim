@@ -1,4 +1,4 @@
-vim.keymap.set("n", "<leader>ff", vim.lsp.buf.format, { desc = "Format File", remap = false })
+vim.keymap.set("n", "<leader>ff", vim.lsp.buf.format, { desc = "[F]ormat [F]ile", remap = false })
 
 local Formatter_Group = vim.api.nvim_create_augroup("fmt", { clear = true });
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
