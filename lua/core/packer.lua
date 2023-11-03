@@ -45,6 +45,7 @@ return require('packer').startup(function(use)
     -- lsp configuration
     use {
         'VonHeikemen/lsp-zero.nvim',
+        -- TODO update to v3 - https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/migrate-from-v2-branch.md
         branch = 'v2.x',
         requires = {
             -- LSP Support
