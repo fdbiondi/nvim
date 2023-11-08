@@ -20,7 +20,7 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = 'Copy to system clip
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = 'Copy line to system clipboard' })
 
 -- copy filename to clipboard
-vim.keymap.set("n", "<leader>cn", "<cmd>let @+ = expand('%:t')<CR>", { desc = '[C]opy [F]ilename to clipboard' })
+vim.keymap.set("n", "<leader>cn", "<cmd>let @+ = expand('%:t')<CR>", { desc = '[C]opy File[N]ame to clipboard' })
 vim.keymap.set("n", "<leader>cr", "<cmd>let @+ = expand('%')<CR>", { desc = '[C]opy [R]elative filepath to clipboard' })
 vim.keymap.set("n", "<leader>cf", "<cmd>let @+ = expand('%:p')<CR>", { desc = '[C]opy [F]ull filepath to clipboard' })
 vim.keymap.set("n", "<leader>cd", "<cmd>let @+ = expand('%:h')<CR>", { desc = '[C]opy [D]irectory to clipboard' })
