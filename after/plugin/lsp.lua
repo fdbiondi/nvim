@@ -61,6 +61,8 @@ lsp.ensure_installed({
     "gopls",
 })
 
+lsp.nvim_workspace()
+
 -- Configure lua language server
 lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
 
