@@ -106,6 +106,7 @@ return require('packer').startup(function(use)
 
     -- useful tools
     use('sbdchd/neoformat')                    -- format document
+    use('windwp/nvim-ts-autotag')
     use('mbbill/undotree')                     -- navigation through undo history tree
     use('laytan/cloak.nvim')                   -- password hidding
     use('lukas-reineke/indent-blankline.nvim') -- lines indentation guidelines
