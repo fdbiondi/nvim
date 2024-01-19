@@ -9,5 +9,5 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
             { desc = "Format File using Prettierd", buffer = bufnr, remap = false })
     end,
     group = Formatter_Group,
-    pattern = "*.js,*.ts,*.vue,*.css,*.html,*.scss,*.tsx,*.jsx,*.yaml,*.yml,*.php,*.json",
+    pattern = "*.js,*.ts,*.vue,*.css,*.html,*.scss,*.tsx,*.jsx,*.yaml,*.yml,*.json",
 })
