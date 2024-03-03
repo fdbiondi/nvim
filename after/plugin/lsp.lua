@@ -91,6 +91,11 @@ lspconfig.volar.setup {
     capabilities = capabilities,
 }
 
+lspconfig.tsserver.setup {
+    on_attach = lsp.on_attach,
+    capabilities = capabilities,
+}
+
 local util = require("lspconfig/util")
 
 lspconfig.gopls.setup {
