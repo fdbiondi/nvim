@@ -16,3 +16,5 @@ require('nx').setup {
     -- see nx.loading-and-reloading for more details
     read_init = true,
 }
+
+vim.keymap.set("n", "<leader>nx", "<cmd>Telescope nx actions<CR>", { desc = "NX Actions" })
