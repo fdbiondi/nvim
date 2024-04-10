@@ -120,6 +120,12 @@ return require('packer').startup(function(use)
         }
     }
 
+    -- nx build system tool
+    use {
+        'Equilibris/nx.nvim',
+        requires = { 'nvim-telescope/telescope.nvim' }
+    }
+
     -- IA suggestions tool
     use('Exafunction/codeium.vim')
 
