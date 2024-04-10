@@ -96,6 +96,11 @@ lspconfig.tsserver.setup {
     capabilities = capabilities,
 }
 
+lspconfig.rust_analyzer.setup {
+    on_attach = lsp.on_attach,
+    capabilities = capabilities,
+}
+
 local util = require("lspconfig/util")
 
 lspconfig.gopls.setup {
