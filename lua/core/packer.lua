@@ -101,6 +101,9 @@ return require('packer').startup(function(use)
     -- rust tools
     use('simrat39/rust-tools.nvim')
 
+    -- clojure tools
+    use('Olical/conjure')
+
     -- golang tools
     use("ray-x/go.nvim")
 
