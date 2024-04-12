@@ -57,7 +57,6 @@ lsp.ensure_installed({
     "stylelint_lsp",
     "tailwindcss",
     "tsserver",
-    "volar",
     "gopls",
 })
 
@@ -84,12 +83,6 @@ lspconfig.omnisharp.setup({
     use_mono = true,
     cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid) },
 })
-
--- Configure volar language server
-lspconfig.volar.setup {
-    on_attach = lsp.on_attach,
-    capabilities = capabilities,
-}
 
 lspconfig.tsserver.setup {
     on_attach = lsp.on_attach,
