@@ -23,6 +23,13 @@ require('telescope').setup {
             },
         },
     },
+    pickers = {
+        grep_string = {
+            additional_args = function()
+                return {"--hidden"}
+            end
+        },
+    },
 }
 
 require('telescope').load_extension('file_browser')
