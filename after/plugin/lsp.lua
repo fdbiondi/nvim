@@ -50,13 +50,11 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 lsp.ensure_installed({
     -- Replace these with whatever servers you want to install
     "clangd",
-    "eslint",
-    "eslint",
     "lua_ls",
     "rust_analyzer",
     "stylelint_lsp",
     "tailwindcss",
-    "tsserver",
+    "ts_ls",
     "gopls",
 })
 
@@ -84,7 +82,7 @@ lspconfig.omnisharp.setup({
     cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid) },
 })
 
-lspconfig.tsserver.setup {
+lspconfig.ts_ls.setup {
     on_attach = lsp.on_attach,
     capabilities = capabilities,
 }
