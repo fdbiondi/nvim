@@ -2,8 +2,13 @@ return {
     {
         'mrcjkb/rustaceanvim',
         version = '^5', -- Recommended
-        lazy = false,   -- This plugin is already lazy
+        lazy = true,    -- This plugin is already lazy
         ft = "rust",
+
+        dependencies = {
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim",
+        },
 
         config = function()
             -- setup debugging
@@ -24,33 +29,6 @@ return {
                     adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path),
                 },
             }
-
-            -- https://github.com/mfussenegger/nvim-dap/wiki/C-C---Rust-(via--codelldb)
-            -- local dap = require("dap")
-            --
-            -- dap.adapters.codelldb = {
-            --     type = "server",
-            --     host = "127.0.0.1",
-            --     port = "${port}",
-            --     executable = {
-            --         command = codelldb_path,
-            --         args = { "--port", "${port}" },
-            --     }
-            -- }
-            --
-            -- dap.configurations.rust = {
-            --     {
-            --         name = "Launch file",
-            --         type = "codelldb",
-            --         request = "launch",
-            --         program = function()
-            --             return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-            --         end,
-            --         cwd = "${workspaceFolder}",
-            --         stopOnEntry = false,
-            --         args = {},
-            --     },
-            -- }
         end
     },
 

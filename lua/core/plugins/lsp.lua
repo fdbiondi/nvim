@@ -57,7 +57,9 @@ return {
                 "clangd",
                 "stylelint_lsp",
                 "tailwindcss",
+                "cssls",
                 "ts_ls",
+                "volar",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -81,6 +83,7 @@ return {
                     vim.g.zig_fmt_parse_errors = 0
                     vim.g.zig_fmt_autosave = 0
                 end,
+
                 ["lua_ls"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.lua_ls.setup {
@@ -95,6 +98,7 @@ return {
                         }
                     }
                 end,
+
                 ["gopls"] = function()
                     local lspconfig = require("lspconfig")
                     local util = require("lspconfig/util")
@@ -118,9 +122,94 @@ return {
                         },
                     }
                 end,
+
                 ["rust_analyzer"] = function()
                     --
-                end
+                end,
+
+                ["volar"] = function()
+                    require("lspconfig").volar.setup({
+                        -- NOTE: Uncomment to enable volar in file types other than vue.
+                        -- (Similar to Takeover Mode)
+
+                        filetypes = { "vue", "javascript", "typescript", "javascriptreact", "typescriptreact", "json" },
+
+                        -- NOTE: Uncomment to restrict Volar to only Vue/Nuxt projects. This will enable Volar to work alongside other language servers (tsserver).
+
+                        root_dir = require("lspconfig").util.root_pattern(
+                            "vue.config.js",
+                            "vue.config.ts",
+                            "nuxt.config.js",
+                            "nuxt.config.ts"
+                        ),
+                        init_options = {
+                            vue = {
+                                hybridMode = true,
+                            },
+                        },
+                        capabilities = capabilities,
+                        settings = {
+                            typescript = {
+                                inlayHints = {
+                                    enumMemberValues = {
+                                        enabled = true,
+                                    },
+                                    functionLikeReturnTypes = {
+                                        enabled = true,
+                                    },
+                                    propertyDeclarationTypes = {
+                                        enabled = true,
+                                    },
+                                    parameterTypes = {
+                                        enabled = true,
+                                        suppressWhenArgumentMatchesName = true,
+                                    },
+                                    variableTypes = {
+                                        enabled = true,
+                                    },
+                                },
+                            },
+                        },
+                    })
+                end,
+
+                ["ts_ls"] = function()
+                    local mason_packages = vim.fn.stdpath("data") .. "/mason/packages"
+                    local volar_path = mason_packages .. "/vue-language-server/node_modules/@vue/language-server"
+
+                    require("lspconfig").ts_ls.setup({
+                        -- NOTE: To enable hybridMode, change HybrideMode to true above and uncomment the following filetypes block.
+
+                        filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+                        init_options = {
+                            plugins = {
+                                {
+                                    name = "@vue/typescript-plugin",
+                                    location = volar_path,
+                                    languages = { "vue" },
+                                },
+                            },
+                        },
+                        capabilities = capabilities,
+                        settings = {
+                            typescript = {
+                                tsserver = {
+                                    useSyntaxServer = false,
+                                },
+                                inlayHints = {
+                                    includeInlayParameterNameHints = "all",
+                                    includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                                    includeInlayFunctionParameterTypeHints = true,
+                                    includeInlayVariableTypeHints = true,
+                                    includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+                                    includeInlayPropertyDeclarationTypeHints = true,
+                                    includeInlayFunctionLikeReturnTypeHints = true,
+                                    includeInlayEnumMemberValueHints = true,
+                                },
+                            },
+                        },
+                    })
+                end,
             }
         })
 
