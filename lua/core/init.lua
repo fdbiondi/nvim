@@ -64,8 +64,8 @@ autocmd('LspAttach', {
         vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next() end,
             { buffer = e.buf, desc = "Go to next diagnostic message" })
 
-        vim.keymap.set("n", "<leader>vfd", function() vim.diagnostic.open_float() end,
-            { buffer = e.buf, desc = "Open [F]loating [D]iagnostic message" })
+        vim.keymap.set("n", "<leader>vdm", function() vim.diagnostic.open_float({ focusable = true }) end,
+            { buffer = e.buf, desc = "Open Floating [D]iagnostic [M]essage" })
         vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references,
             { buffer = e.buf, desc = "[G]oto [R]eferences" })
         vim.keymap.set("n", "<leader>vds", require("telescope.builtin").lsp_document_symbols,
@@ -74,8 +74,8 @@ autocmd('LspAttach', {
         --     { buffer = e.buf, desc = "[W]orkspace [S]ymbols" })
         vim.keymap.set("n", "<leader>vws", require("telescope.builtin").lsp_dynamic_workspace_symbols,
             { buffer = e.buf, desc = "[W]orkspace [S]ymbols" })
-        -- vim.keymap.set("n", "<leader>vdl", function() vim.diagnostic.setloclist() end,
-        --     { buffer = e.buf, desc = "Open [D]iagnostics [L]ist" })
+        vim.keymap.set("n", "<leader>vdq", function() vim.diagnostic.setloclist() end,
+            { buffer = e.buf, desc = "Open [D]iagnostics [Q]uick List" })
         vim.keymap.set("n", "<leader>vdl", "<cmd>Telescope diagnostics<CR>",
             { buffer = e.buf, desc = "Open telescope [D]iagnostics [L]ist" })
         vim.keymap.set({ "n", "x" }, "<leader>vff", function() vim.lsp.buf.format({ async = true }) end,
