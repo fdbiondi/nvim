@@ -44,8 +44,4 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 -- make file an executable file
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = 'Make file e[x]ecutable' })
 
--- open neovim packer configuration file
-vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/lua/core/packer.lua<CR>",
-    { desc = 'Open [P]acker config file' });
-
 vim.keymap.set("n", "<leader><leader>", function() vim.cmd("so") end)
