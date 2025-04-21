@@ -5,7 +5,11 @@ return {
             "nvim-lua/plenary.nvim",
             "hrsh7th/nvim-cmp",
         },
-        opts = {}
+        opts = {},
+        config = function()
+            require("codeium").setup({
+            })
+        end
     },
 
     { 'github/copilot.vim' }
