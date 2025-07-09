@@ -1,5 +1,6 @@
 return {
     "neovim/nvim-lspconfig",
+
     dependencies = {
         "stevearc/conform.nvim",
         "williamboman/mason.nvim",
@@ -59,7 +60,7 @@ return {
                 "tailwindcss",
                 "cssls",
                 "ts_ls",
-                "volar",
+                -- "volar",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -175,20 +176,30 @@ return {
 
                 ["ts_ls"] = function()
                     local mason_packages = vim.fn.stdpath("data") .. "/mason/packages"
-                    local volar_path = mason_packages .. "/vue-language-server/node_modules/@vue/language-server"
+                    -- local volar_path = mason_packages .. "/vue-language-server/node_modules/@vue/language-server"
+
+                    -- require("lspconfig").eslint.setup({
+                    --     capabilities = capabilities,
+                    --     on_new_config = function(config, new_root_dir)
+                    --         config.settings.workspaceFolder = {
+                    --             uri = vim.uri_from_fname(new_root_dir),
+                    --             name = vim.fn.fnamemodify(new_root_dir, ':t')
+                    --         }
+                    --     end,
+                    -- })
 
                     require("lspconfig").ts_ls.setup({
                         -- NOTE: To enable hybridMode, change HybrideMode to true above and uncomment the following filetypes block.
 
                         filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
                         init_options = {
-                            plugins = {
-                                {
-                                    name = "@vue/typescript-plugin",
-                                    location = volar_path,
-                                    languages = { "vue" },
-                                },
-                            },
+                            -- plugins = {
+                            --     {
+                            --         name = "@vue/typescript-plugin",
+                            --         location = volar_path,
+                            --         languages = { "vue" },
+                            --     },
+                            -- },
                         },
                         capabilities = capabilities,
                         settings = {
