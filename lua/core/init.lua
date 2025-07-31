@@ -84,3 +84,5 @@ autocmd('LspAttach', {
 })
 
 require('core.netrw')
+
+require('core.macros')
