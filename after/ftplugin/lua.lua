@@ -1,4 +1,4 @@
-vim.opt_local.textwidth = 120
+vim.opt.textwidth = 120
 
-vim.opt_local.shiftwidth = 4
-vim.opt_local.formatoptions:remove "o"
+vim.opt.shiftwidth = 4
+vim.opt.formatoptions:remove "o"
