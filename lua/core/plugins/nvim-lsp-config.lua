@@ -95,7 +95,14 @@ return {
                                 diagnostics = {
                                     globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
                                 }
+                                workspace = {
+                                    library = {
+                                        vim.fn.stdpath('data') .. '/lazy/lazydev.nvim/lua',
+                                        -- Add other library paths as needed
+                                    }
+                                }
                             }
+
                         }
                     }
                 end,
