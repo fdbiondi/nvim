@@ -1,0 +1,31 @@
+return {
+    -- "mfussenegger/nvim-lint",
+    -- event = { "BufReadPre", "BufNewFile" },
+    -- config = function()
+    --     require("lint").linters_by_ft = {
+    --         -- python = {"ruff", "mypy"}
+    --         -- python = { "flake8" }, -- Example: Use flake8 for Python files
+    --         javascript = { "eslint" },
+    --         typescript = { "eslint" },
+    --
+    --         -- https://github.com/mantoni/eslint_d.js/
+    --         -- javascript = { 'eslint_d' },
+    --         -- typescript = { 'eslint_d' },
+    --
+    --         -- Add more filetypes and their respective linters
+    --     }
+    --     -- require("lint").setup({
+    --     --     -- Configure your linters here
+    --     --     linters_by_ft = {
+    --     --     },
+    --     --     -- You can also add global linters or fallbacks
+    --     --     -- global_linters = { "check_spelling" },
+    --     --     -- fallback_linters = { "generic_linter" },
+    --     -- })
+    --
+    --     -- Optional: Set up a keymap to trigger linting manually
+    --     vim.keymap.set("n", "<leader>l", function()
+    --         require("lint").try_lint()
+    --     end, { desc = "Trigger linting" })
+    -- end,
+}
