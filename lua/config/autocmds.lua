@@ -1,7 +1,3 @@
-require('core.remap')
-require('core.set')
-require('core.lazy_init')
-
 -- If i want to keep doing lsp debugging
 -- function restart_htmx_lsp()
 --     require("lsp-debug-tools").restart({ expected = {}, name = "htmx-lsp", cmd = { "htmx-lsp", "--level", "DEBUG" }, root_dir = vim.loop.cwd(), });
@@ -82,7 +78,3 @@ autocmd('LspAttach', {
             { buffer = e.buf, desc = "[F]ormat [F]ile" })
     end
 })
-
-require('core.netrw')
-
-require('core.macros')
