@@ -52,7 +52,6 @@ return {
                 "stylelint_lsp",
                 "tailwindcss",
                 "ts_ls",
-                "volar",
                 "zls",
             },
             handlers = {}
