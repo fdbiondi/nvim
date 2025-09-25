@@ -40,175 +40,25 @@ return {
             }
         })
 
-        local cmp = require('cmp')
-        local cmp_lsp = require("cmp_nvim_lsp")
-        local capabilities = vim.tbl_deep_extend(
-            "force",
-            {},
-            vim.lsp.protocol.make_client_capabilities(),
-            cmp_lsp.default_capabilities())
-
         require("fidget").setup({})
         require("mason").setup()
         require("mason-lspconfig").setup({
             ensure_installed = {
+                "clangd",
+                "cssls",
+                "gopls",
                 "lua_ls",
                 "rust_analyzer",
-                "gopls",
-                "clangd",
                 "stylelint_lsp",
                 "tailwindcss",
-                "cssls",
                 "ts_ls",
-                -- "volar",
+                "volar",
+                "zls",
             },
-            handlers = {
-                function(server_name) -- default handler (optional)
-                    require("lspconfig")[server_name].setup {
-                        capabilities = capabilities
-                    }
-                end,
-
-                zls = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.zls.setup({
-                        root_dir = lspconfig.util.root_pattern(".git", "build.zig", "zls.json"),
-                        settings = {
-                            zls = {
-                                enable_inlay_hints = true,
-                                enable_snippets = true,
-                                warn_style = true,
-                            },
-                        },
-                    })
-                    vim.g.zig_fmt_parse_errors = 0
-                    vim.g.zig_fmt_autosave = 0
-                end,
-
-                ["gopls"] = function()
-                    local lspconfig = require("lspconfig")
-                    local util = require("lspconfig/util")
-                    lspconfig.gopls.setup {
-                        capabilities = capabilities,
-                        cmd = { "gopls", "serve" },
-                        filetypes = { "go", "gomod", "gowork", "gotmpl" },
-                        root_dir = util.root_pattern("go.work", "go.mod", ".git"),
-                        fillstruct = 'gopls',
-                        dap_debug = true,
-                        dap_debug_gui = true,
-                        settings = {
-                            gopls = {
-                                analyses = {
-                                    unusedparams = true,
-                                },
-                                completeUnimported = true,
-                                staticcheck = true,
-                                usePlaceholders = true,
-                            },
-                        },
-                    }
-                end,
-
-                ["rust_analyzer"] = function()
-                    --
-                end,
-
-                ["volar"] = function()
-                    require("lspconfig").volar.setup({
-                        -- NOTE: Uncomment to enable volar in file types other than vue.
-                        -- (Similar to Takeover Mode)
-
-                        filetypes = { "vue", "javascript", "typescript", "javascriptreact", "typescriptreact", "json" },
-
-                        -- NOTE: Uncomment to restrict Volar to only Vue/Nuxt projects. This will enable Volar to work alongside other language servers (tsserver).
-
-                        root_dir = require("lspconfig").util.root_pattern(
-                            "vue.config.js",
-                            "vue.config.ts",
-                            "nuxt.config.js",
-                            "nuxt.config.ts"
-                        ),
-                        init_options = {
-                            vue = {
-                                hybridMode = true,
-                            },
-                        },
-                        capabilities = capabilities,
-                        settings = {
-                            typescript = {
-                                inlayHints = {
-                                    enumMemberValues = {
-                                        enabled = true,
-                                    },
-                                    functionLikeReturnTypes = {
-                                        enabled = true,
-                                    },
-                                    propertyDeclarationTypes = {
-                                        enabled = true,
-                                    },
-                                    parameterTypes = {
-                                        enabled = true,
-                                        suppressWhenArgumentMatchesName = true,
-                                    },
-                                    variableTypes = {
-                                        enabled = true,
-                                    },
-                                },
-                            },
-                        },
-                    })
-                end,
-
-                ["ts_ls"] = function()
-                    local mason_packages = vim.fn.stdpath("data") .. "/mason/packages"
-                    -- local volar_path = mason_packages .. "/vue-language-server/node_modules/@vue/language-server"
-
-                    -- require("lspconfig").eslint.setup({
-                    --     capabilities = capabilities,
-                    --     on_new_config = function(config, new_root_dir)
-                    --         config.settings.workspaceFolder = {
-                    --             uri = vim.uri_from_fname(new_root_dir),
-                    --             name = vim.fn.fnamemodify(new_root_dir, ':t')
-                    --         }
-                    --     end,
-                    -- })
-
-                    require("lspconfig").ts_ls.setup({
-                        -- NOTE: To enable hybridMode, change HybrideMode to true above and uncomment the following filetypes block.
-
-                        filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
-                        init_options = {
-                            -- plugins = {
-                            --     {
-                            --         name = "@vue/typescript-plugin",
-                            --         location = volar_path,
-                            --         languages = { "vue" },
-                            --     },
-                            -- },
-                        },
-                        capabilities = capabilities,
-                        settings = {
-                            typescript = {
-                                tsserver = {
-                                    useSyntaxServer = false,
-                                },
-                                inlayHints = {
-                                    includeInlayParameterNameHints = "all",
-                                    includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-                                    includeInlayFunctionParameterTypeHints = true,
-                                    includeInlayVariableTypeHints = true,
-                                    includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-                                    includeInlayPropertyDeclarationTypeHints = true,
-                                    includeInlayFunctionLikeReturnTypeHints = true,
-                                    includeInlayEnumMemberValueHints = true,
-                                },
-                            },
-                        },
-                    })
-                end,
-            }
+            handlers = {}
         })
 
+        local cmp = require('cmp')
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
         cmp.setup({
