@@ -13,7 +13,8 @@ return {
                     }
                 },
 
-                lualine_x = { "encoding", "filetype" },
+                lualine_x = { "encoding", "filetype", },
+                -- require('codex').status(),
             },
         })
     end
