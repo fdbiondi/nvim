@@ -59,6 +59,12 @@ return {
             handlers = {}
         })
 
+        -- nvim 0.11 or above
+        local config_dir = vim.fn.stdpath("config")
+        vim.lsp.config('ts_ls', dofile(config_dir .. '/lsp/ts_ls.lua'))
+        vim.lsp.config('vue_ls', dofile(config_dir .. '/lsp/vue_ls.lua'))
+        vim.lsp.enable { 'ts_ls', 'vue_ls' }
+
         local cmp = require('cmp')
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
 

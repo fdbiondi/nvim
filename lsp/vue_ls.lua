@@ -6,6 +6,7 @@
 ---
 --- The language server only supports Vue 3 projects by default.
 --- For Vue 2 projects, [additional configuration](https://github.com/vuejs/language-tools/blob/master/extensions/vscode/README.md?plain=1#L19) are required.
+
 ---@type vim.lsp.Config
 
 return {
