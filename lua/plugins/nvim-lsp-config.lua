@@ -2,9 +2,10 @@ return {
     "neovim/nvim-lspconfig",
 
     dependencies = {
-        "stevearc/conform.nvim",
-        "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
+        -- TODO: check deps
+        "stevearc/conform.nvim",             -- check
+        "williamboman/mason.nvim",           -- check
+        "williamboman/mason-lspconfig.nvim", -- check
 
         -- Completion framework:
         "hrsh7th/nvim-cmp",
@@ -52,6 +53,7 @@ return {
                 "stylelint_lsp",
                 "tailwindcss",
                 "ts_ls",
+                "vue_ls",
                 "zls",
             },
             handlers = {}

@@ -65,7 +65,6 @@ return {
                 dapui.close()
             end
 
-
             -- local icons = require('utils.icons')
 
             vim.api.nvim_set_hl(0, 'DapStoppedLine', { default = true, link = 'Visual' })
