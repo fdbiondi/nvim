@@ -50,7 +50,6 @@ return {
                 "gopls",
                 "lua_ls",
                 "rust_analyzer",
-                "stylelint_lsp",
                 "tailwindcss",
                 "ts_ls",
                 "vue_ls",
