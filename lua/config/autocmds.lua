@@ -38,6 +38,13 @@ autocmd('BufWritePre', {
 autocmd('LspAttach', {
     group = MyGroup,
     callback = function(e)
+        local client = vim.lsp.get_client_by_id(e.data.client_id)
+
+        -- Work around a Neovim 0.11.x inlay hint rendering crash seen with rust-analyzer.
+        if client and client.name == "rust_analyzer" then
+            vim.lsp.inlay_hint.enable(false, { bufnr = e.buf })
+        end
+
         vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end,
             { buffer = e.buf, desc = "[G]oto [D]efinition" })
         vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end,
