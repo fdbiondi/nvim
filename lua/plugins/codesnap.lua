@@ -1,20 +1,55 @@
 return {
     "mistricky/codesnap.nvim",
-    build = "make",
+    config = function()
+        local module = require("codesnap.module")
+        local fetch = require("codesnap.fetch")
 
-    -- keys = {
-    --     { "<leader>cc", "<cmd>CodeSnap<cr>", mode = "x", desc = "Save selected code snapshot into clipboard" },
-    --     { "<leader>cs", "<cmd>CodeSnapSave<cr>", mode = "x", desc = "Save selected code snapshot in ~/Documents" },
-    -- },
+        module.load_generator = function(_)
+            if module.generator ~= nil then
+                return module.generator
+            end
 
-    opts = {
-        save_path = "~/Documents",
-        has_breadcrumbs = true,
-        has_line_number = true,
-        bg_color = "#535c68",
-        bg_x_padding = 40,
-        bg_y_padding = 40,
-        bg_padding = nil,
-        watermark = ""
-    },
+            local lib_path = fetch.ensure_lib()
+            local loader, err = package.loadlib(lib_path, "luaopen_generator")
+
+            if not loader then
+                error(err)
+            end
+
+            module.generator = loader()
+            if module.generator.parse_code_theme == nil then
+                module.generator.parse_code_theme = function(theme)
+                    return theme
+                end
+            end
+            if module.generator.copy == nil and module.generator.copy_into_clipboard ~= nil then
+                module.generator.copy = module.generator.copy_into_clipboard
+            end
+            package.loaded.generator = module.generator
+
+            return module.generator
+        end
+
+        require("codesnap").setup({
+            save_path = "~/Documents",
+            show_line_number = true,
+            snapshot_config = {
+                watermark = {
+                    content = "",
+                },
+                code_config = {
+                    breadcrumbs = {
+                        enable = true,
+                    },
+                },
+                window = {
+                    margin = {
+                        x = 40,
+                        y = 40,
+                    },
+                },
+                background = "#535c68",
+            },
+        })
+    end,
 }
