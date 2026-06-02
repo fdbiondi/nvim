@@ -5,6 +5,36 @@ return {
         build = ":TSUpdate",
 
         config = function()
+            -- Neovim 0.12 ships a markdown injections query that is safer than the
+            -- one currently bundled in the pinned nvim-treesitter revision.
+            vim.treesitter.query.set("markdown", "injections", [[
+              (fenced_code_block
+                (info_string
+                  (language) @injection.language)
+                (code_fence_content) @injection.content)
+
+              ((html_block) @injection.content
+                (#set! injection.language "html")
+                (#set! injection.combined)
+                (#set! injection.include-children))
+
+              ((minus_metadata) @injection.content
+                (#set! injection.language "yaml")
+                (#offset! @injection.content 1 0 -1 0)
+                (#set! injection.include-children))
+
+              ((plus_metadata) @injection.content
+                (#set! injection.language "toml")
+                (#offset! @injection.content 1 0 -1 0)
+                (#set! injection.include-children))
+
+              ([
+                (inline)
+                (pipe_table_cell)
+              ] @injection.content
+                (#set! injection.language "markdown_inline"))
+            ]])
+
             require("nvim-treesitter.configs").setup({
                 -- A list of parser names, or "all"
                 ensure_installed = {
