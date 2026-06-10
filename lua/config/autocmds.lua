@@ -39,9 +39,21 @@ autocmd('LspAttach', {
     group = MyGroup,
     callback = function(e)
         local client = vim.lsp.get_client_by_id(e.data.client_id)
+        local filetype = vim.bo[e.buf].filetype
 
         -- Work around a Neovim 0.11.x inlay hint rendering crash seen with rust-analyzer.
         if client and client.name == "rust_analyzer" then
+            vim.lsp.inlay_hint.enable(false, { bufnr = e.buf })
+        end
+
+        -- Vue + TypeScript servers can return inlay-hint columns beyond the rendered line length
+        -- in .vue buffers, which trips Neovim's extmark placement.
+        if client and filetype == "vue" and vim.tbl_contains({
+                "vue_ls",
+                "ts_ls",
+                "vtsls",
+                "typescript-tools",
+            }, client.name) then
             vim.lsp.inlay_hint.enable(false, { bufnr = e.buf })
         end
 
