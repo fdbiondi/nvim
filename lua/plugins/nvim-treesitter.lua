@@ -38,7 +38,7 @@ return {
             require("nvim-treesitter.configs").setup({
                 -- A list of parser names, or "all"
                 ensure_installed = {
-                    "vim", "vimdoc", "javascript", "typescript", "c", "lua", "rust",
+                    "vim", "vimdoc", "html", "vue", "javascript", "typescript", "c", "lua", "rust",
                     "jsdoc", "bash", "css", "scss", "toml",
                 },
 
