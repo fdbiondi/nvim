@@ -5,8 +5,9 @@ return {
         build = ":TSUpdate",
 
         config = function()
-            -- Neovim 0.12 ships a markdown injections query that is safer than the
-            -- one currently bundled in the pinned nvim-treesitter revision.
+            -- nvim-treesitter's Markdown query uses a directive that expects a
+            -- single TSNode, while Neovim 0.12 returns capture node lists here.
+            -- Keep the runtime query and use the capture text directly instead.
             vim.treesitter.query.set("markdown", "injections", [[
               (fenced_code_block
                 (info_string
@@ -35,11 +36,20 @@ return {
                 (#set! injection.language "markdown_inline"))
             ]])
 
+            -- Bash heredocs in Markdown hit the same capture-list/API mismatch
+            -- through #downcase!. Keep Bash injections, but omit that directive.
+            local bash_injections = vim.treesitter.query.get_files("bash", "injections")[1]
+            if bash_injections then
+                local query = table.concat(vim.fn.readfile(bash_injections), "\n")
+                query = query:gsub("%s*%(%#downcase! @injection%.language%)", "")
+                vim.treesitter.query.set("bash", "injections", query)
+            end
+
             require("nvim-treesitter.configs").setup({
                 -- A list of parser names, or "all"
                 ensure_installed = {
                     "vim", "vimdoc", "html", "vue", "javascript", "typescript", "c", "lua", "rust",
-                    "jsdoc", "bash", "css", "scss", "toml",
+                    "jsdoc", "bash", "css", "scss", "toml", "markdown", "markdown_inline",
                 },
 
                 -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -82,9 +92,7 @@ return {
                     -- Set this to `true` if you depend on "syntax" being enabled (like for indentation).
                     -- Using this option may slow down your editor, and you may see some duplicate highlights.
                     -- Instead of true it can also be a list of languages
-                    additional_vim_regex_highlighting = { "markdown" },
-
-                    -- additional_vim_regex_highlighting = false,
+                    additional_vim_regex_highlighting = false,
                 },
             })
 
